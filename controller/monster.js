@@ -1,5 +1,6 @@
 const Monster = require('../model/Monster');
 
+// FETCH ALL MONSTERS
 exports.getMonster =  (req,res,next) =>{
 
     Monster.find()
@@ -12,31 +13,9 @@ exports.getMonster =  (req,res,next) =>{
         .catch((err)=>{
             console.log(err);
         })
-
-    // res.json([
-    //     {
-    //        id: 1,
-    //        monster: 'Roniel'
-    //     },
-    //     {
-    //         id: 2,
-    //         monster: 'Rogine'
-    //     },
-    //     {
-    //         id: 3,
-    //         monster: 'Samber'   
-    //     },
-    //     {
-    //         id: 4,
-    //         monster: 'Mon Amore'   
-    //     },
-    //     {
-    //         id: 5,
-    //         monster: 'Love'   
-    //     }
-    // ])
 };
 
+//CREATE MONSTER
 exports.createMonster = (req,res,next) =>{    
     const monster = req.body.monster;
     const description = req.body.description;
@@ -55,14 +34,22 @@ exports.createMonster = (req,res,next) =>{
         .catch((err)=>{
             console.log(err);
         })
-
-
-    // res.status(201).json({ //201 SUCCESS WAS RESOURCES IS CREATED
-    //     message: 'POST HAS BEEN CREATED',
-    //     post: {
-    //         id: new Date().toISOString(),
-    //         monstername: monstername,
-    //         description: description
-    //     }
-    // });
 };
+
+//FETCH SPECIFIC MONSTER
+exports.getMonsterId = (req,res,next) =>{
+    const monsterId = req.params.id;
+
+    Monster.findById(monsterId)
+
+    .then((monster)=>{
+        console.log(monster)
+        res.status(200).json({
+            message: 'Monster fetched successfully',
+            monster
+        })
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+}
