@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 //routes and controller
 const monsterRoutes = require('./routes/monster');
+const noData = require('./controller/404');
 
 const mongoose = require('mongoose');
 const session = require('express-session'); //setting up express session
@@ -34,6 +35,9 @@ app.use(
 
 //routes
 app.use(monsterRoutes);
+
+//no data found
+app.use(noData.get404);
 
 mongoose.connect(MONGODB_URI)
 .then(con =>{
