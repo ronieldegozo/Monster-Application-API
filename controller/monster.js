@@ -52,4 +52,19 @@ exports.getMonsterId = (req,res,next) =>{
     .catch((err)=>{
         console.log(err);
     })
-}
+};
+
+
+exports.deleteMonster = (req,res,next) => { 
+    const deleteMonsterId = req.params.id;
+    Monster.findByIdAndRemove(deleteMonsterId)
+        .then((monster)=>{
+            res.status(200).json({
+                message: 'Monster deleted successfully',
+                monster
+            })
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+};
