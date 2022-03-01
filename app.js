@@ -39,9 +39,9 @@ app.use(monsterRoutes);
 //no data found
 app.use(noData.get404);
 
-mongoose.connect(MONGODB_URI)
+mongoose.connect(MONGODB_URI)   
 .then(con =>{
-    app.listen(8080);
+    app.listen(3000);
     console.log('Connected to database');
 })
 .catch(err =>{
