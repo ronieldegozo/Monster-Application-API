@@ -1,3 +1,4 @@
+const PORT = process.env.PORT || 3000;
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -41,8 +42,9 @@ app.use(noData.get404);
 
 mongoose.connect(MONGODB_URI)   
 .then(con =>{
-    app.listen(3000);
-    console.log('Connected to database');
+    app.listen(PORT,  () => {
+        console.log(`Server running on port ${PORT}`)
+    })
 })
 .catch(err =>{
     console.log('Error connecting to database');
