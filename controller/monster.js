@@ -1,4 +1,50 @@
 const Monster = require('../model/Monster');
+
+//FETCH INDEX
+exports.getMonsterStart =  async (req,res,next) => {
+    try {
+        res.status(200).json({
+            AppName: 'Welcome to Monster App API',
+            Developer: 'Mc Roniel De Gozo',
+            Version: '1.0.0',
+            Endpoints: [
+                {
+                    Endpoint: '/api/monster',
+                    Description: 'Get all monsters',
+                    Method: 'GET',
+                    Parameters: 'None'
+                },
+                {
+                    Endpoint: '/api/monster/:id',
+                    Description: 'Get a single monster',
+                    Method: 'GET',
+                    Parameters: 'None'
+                },
+                {
+                    Endpoint: '/api/monster',
+                    Description: 'Create a monster',
+                    Method: 'POST',
+                    Parameters: 'None'
+                },
+                {
+                    Endpoint: '/api/monster/:id',
+                    Description: 'Update a monster',
+                    Method: 'PUT',
+                    Parameters: 'None'
+                },
+                {
+                    Endpoint: '/api/monster/:id',
+                    Description: 'Delete a monster',
+                    Method: 'DELETE',
+                    Parameters: 'None'
+                }
+            ]
+        });
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 // FETCH ALL MONSTERS
 exports.getMonster =  async(req,res,next) =>{
     try{
@@ -18,10 +64,14 @@ exports.createMonster =async (req,res,next) =>{
     try{
         const monster = req.body.monster;
         const description = req.body.description;
+        const email = req.body.email;
+        const contact = req.body.contact;
         // console.log('monstername', monster,description);
         const monsterdata = new Monster({
             monster: monster,
-            description: description
+            description: description,
+            email: email,
+            contact: contact
         })
         const newMonster = await monsterdata.save();
             res.status(201).json({

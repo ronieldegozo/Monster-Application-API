@@ -9,6 +9,14 @@ const monsterSchema = new Schema({
     description: {
         type: String,
         required: true,
+    },
+    email:{
+        type: String,
+        required: true,
+    },
+    contact:{
+        type: Number,
+        required: true,
     }
 });
 module.exports = mongoose.model('Monster', monsterSchema);
