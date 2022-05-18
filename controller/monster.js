@@ -98,6 +98,32 @@ exports.getMonsterId = async (req,res,next) =>{
     }
 };
 
+//UPDATE MONSTER
+exports.updateMonster = async (req,res,next) =>{
+    try{
+        const monsterId = req.params.id;
+        const monsterDataId = await Monster.findById(monsterId);
+        const monster = req.body.monster;
+        const description = req.body.description;
+        const email = req.body.email;
+        const contact = req.body.contact;
+        await Monster.findByIdAndUpdate(monsterId, {
+            monster: monster,
+            description: description,
+            email: email,
+            contact: contact
+        });
+        res.status(200).json({
+            message: `Monster with the name of ${monsterDataId.monster} updated successfully`,
+            monsterDataId
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+};
+
+
 exports.deleteMonster =  async (req,res,next) => { 
     try{
         const monsterId = req.params.id;

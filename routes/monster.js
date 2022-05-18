@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getMonsterStart, getMonster, createMonster, getMonsterId, deleteMonster} = require('../controller/monster');
+const {getMonsterStart, getMonster, createMonster, getMonsterId, updateMonster, deleteMonster} = require('../controller/monster');
 //get index
 router.get('/', getMonsterStart);
 
@@ -12,6 +12,9 @@ router.post('/monster', createMonster);
 
 //fetching specific monster
 router.get('/monster/:id', getMonsterId);
+
+//updating monster
+router.put('/monster/:id', updateMonster);
 
 //delete specific monster
 router.delete('/monster/:id', deleteMonster);
